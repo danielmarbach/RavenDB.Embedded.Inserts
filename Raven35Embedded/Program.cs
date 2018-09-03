@@ -14,9 +14,10 @@ namespace Raven35Embedded
 
         static async Task Main(string[] args) // Voren or Esent (default)
         {
-            var path = Path.Combine(Path.Combine(Path.GetTempPath(), "ravendb"), Path.GetFileNameWithoutExtension(Path.GetTempFileName()));
+            var path = Path.Combine(Path.Combine(args.ElementAtOrDefault(1) ?? Path.GetTempPath(), "ravendb"), Path.GetFileNameWithoutExtension(Path.GetTempFileName()));
+            Console.WriteLine(path);
             Directory.CreateDirectory(path);
-            var duration = TimeSpan.FromSeconds(120);
+            var duration = TimeSpan.FromSeconds(300);
             try
             {
                 var documentStore = new EmbeddableDocumentStore

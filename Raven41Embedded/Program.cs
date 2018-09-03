@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Raven.Client.Documents;
@@ -13,9 +14,10 @@ namespace Raven41Embedded
 
         static async Task Main(string[] args)
         {
-            var path = Path.Combine(Path.Combine(Path.GetTempPath(), "ravendb"), Path.GetFileNameWithoutExtension(Path.GetTempFileName()));
+            var path = Path.Combine(Path.Combine(args.ElementAtOrDefault(1) ?? Path.GetTempPath(), "ravendb"), Path.GetFileNameWithoutExtension(Path.GetTempFileName()));
+            Console.WriteLine(path);
             Directory.CreateDirectory(path);
-            var duration = TimeSpan.FromSeconds(120);
+            var duration = TimeSpan.FromSeconds(300);
             try
             {
                 EmbeddedServer.Instance.StartServer(new ServerOptions
