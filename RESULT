@@ -1,0 +1,14 @@
+RavenDB 35 Embedded (Esent)
+
+1. Run 1232.5 docs/s
+2. Run 1250.33 docs/s
+
+RavenDB 35 Embedded (Voron)
+
+1. Run 1239.08 docs/s
+2. Run 1218.25 docs/s
+
+RavenDB 41 Embedded
+
+1. Run 6056.58 docs/s
+2. Run 6064.75 docs/s
