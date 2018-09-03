@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Raven.Client;
@@ -14,7 +12,7 @@ namespace Raven35Embedded
     {
         private static long counter;
 
-        static async Task Main(string[] args)
+        static async Task Main(string[] args) // Voren or Esent (default)
         {
             var path = Path.Combine(Path.Combine(Path.GetTempPath(), "ravendb"), Path.GetFileNameWithoutExtension(Path.GetTempFileName()));
             Directory.CreateDirectory(path);
@@ -24,7 +22,7 @@ namespace Raven35Embedded
                 var documentStore = new EmbeddableDocumentStore
                 {
                     DataDirectory = path, EnlistInDistributedTransactions = false,
-                    Configuration = { DefaultStorageTypeName = "Voron" }
+                    Configuration = { DefaultStorageTypeName = args.ElementAtOrDefault(0) ?? "Esent" },
                 };
                 documentStore.Initialize();
 
